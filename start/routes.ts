@@ -27,3 +27,7 @@ Route.get('/', async ({response}:HttpContext) => {
       datas:datas
   })
 })
+Route.get('index', 'LaboratoriosController.index')
+Route.post('store','LaboratoriosController.store')
+Route.get('/show/:id','LaboratoriosController.show')
+Route.put('update/:id','LaboratoriosController.update')
