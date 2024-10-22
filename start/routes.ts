@@ -21,6 +21,7 @@
 import { HttpContext } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 import Database from '@ioc:Adonis/Lucid/Database'
+import AuthController from 'App/Controllers/Http/AuthController'
 Route.get('/', async ({response}:HttpContext) => {
   const datas= await Database.from('laboratorios')
   return response.json({
@@ -31,3 +32,6 @@ Route.get('index', 'LaboratoriosController.index')
 Route.post('store','LaboratoriosController.store')
 Route.get('/show/:id','LaboratoriosController.show')
 Route.put('update/:id','LaboratoriosController.update')
+Route.delete('destroy/:id','LaboratoriosController.destroy')
+Route.post("registrar",'AuthController.registrar')
+Route.post("login","AuthController.login")

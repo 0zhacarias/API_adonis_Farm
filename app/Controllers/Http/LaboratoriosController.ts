@@ -3,7 +3,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Laboratorio from 'App/Models/Laboratorio'
-import Laboratorio from 'App/Models/Laboratorio'
+
 
 export default class LaboratoriosController {
     /**
@@ -37,7 +37,6 @@ export default class LaboratoriosController {
      */
     public async show({ params, response }: HttpContextContract) {
         const { id } = params
-        return response.json(params)
         const lab = await Laboratorio.query()
             .where({ id: id })
             .firstOrFail()
@@ -73,5 +72,18 @@ export default class LaboratoriosController {
        return response.json({
         message:"Atualizado com sucesso"
        })
+    }
+    /**
+     * destroy
+     */
+    public async destroy({params, response}:HttpContextContract) {
+        const {id}=params
+      //  return response.json({id})
+        const lab= await Laboratorio.query().where({id:id}).firstOrFail()
+        lab.delete()
+
+        return response.json({
+            message:"Laboratorio Eliminado com sucesso"
+        })
     }
 }
