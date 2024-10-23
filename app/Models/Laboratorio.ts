@@ -11,6 +11,8 @@ export default class Laboratorio extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
   @column()
+  public user_id:number
+  @column()
   public designacao:string
   @column()
   public funciona:string

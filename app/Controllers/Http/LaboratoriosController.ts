@@ -9,10 +9,16 @@ export default class LaboratoriosController {
     /**
      * index
      */
-    public async index({ response }: HttpContextContract) {
+    public async index({ response,auth }: HttpContextContract) {
+        const {id} = await auth.use('api').authenticate()
+
+          // return response.json({id})
         const dados = await Database.from('laboratorios')
+        .where({user_id:id})
         return response.json({
-            dados: dados
+      
+                dados: dados
+           
         })
 
 
@@ -20,13 +26,14 @@ export default class LaboratoriosController {
     /**
      * name
      */
-    public async store({ request, response }: HttpContextContract) {
+    public async store({ request, response,auth }: HttpContextContract) {
         const { designacao, funciona, nao_funciona, total } = request.body()
         await Laboratorio.create({
             designacao: designacao,
             funciona: funciona,
             nao_funciona: nao_funciona,
-            total: total
+            total: total,
+            user_id:auth.user?.id
         })
         return response.json({
             message: "Criado com sucess"

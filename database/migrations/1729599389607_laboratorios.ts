@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.string('designacao')
       table.string('funciona')
       table.string('nao_funciona')
+      table.integer('user_id').notNullable().unsigned().references('id').inTable('users')
       table.integer('total')
 
       /**

@@ -27,7 +27,7 @@ Route.get('/', async ({response}:HttpContext) => {
   return response.json({
       datas:datas
   })
-})
+}).middleware('auth')
 Route.get('index', 'LaboratoriosController.index')
 Route.post('store','LaboratoriosController.store')
 Route.get('/show/:id','LaboratoriosController.show')
